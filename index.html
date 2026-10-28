@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultorio</title>
+<style>
+:root{--bg:#f4f6f7;--card:#fff;--tx:#1b2528;--mu:#66757a;--ac:#0e7c86;--ac2:#e0f1f3;--bd:#d9e0e2;--rd:#b3402f}
+@media (prefers-color-scheme:dark){:root{--bg:#14191b;--card:#1d2427;--tx:#e6ebec;--mu:#97a5a9;--ac:#47b5bf;--ac2:#1b3a3e;--bd:#333e42;--rd:#e27b6a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:14px}
+h1{font-size:1.3rem;margin:.2rem 0}h2{font-size:1.05rem;margin:1rem 0 .4rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin:10px 0}
+label{display:block;font-size:.82rem;color:var(--mu);margin:8px 0 3px}
+input,select,textarea,button{font:inherit}
+input,select,textarea{width:100%;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx)}
+button{border:0;border-radius:8px;padding:8px 14px;background:var(--ac);color:#fff;cursor:pointer}
+button.s{background:var(--ac2);color:var(--ac)}button.on{background:var(--ac);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tabs{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}
+.r{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--bd);flex-wrap:wrap}
+.r:first-of-type{border-top:0}.mu{color:var(--mu);font-size:.9rem}
+.est{width:auto}.cancelada{opacity:.5;text-decoration:line-through}
+.login{max-width:340px;margin:12vh auto}
+</style></head><body><main id="app"></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+// === CONFIGURACIÓN: pega aquí los datos de tu proyecto Supabase ===
+const SUPABASE_URL = 'PEGAR_URL_AQUI';
+const SUPABASE_KEY = 'PEGAR_ANON_KEY_AQUI';
+// ==================================================================
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad = n => String(n).padStart(2, '0');
+const ymd = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+const hm = iso => { const d = new Date(iso); return pad(d.getHours()) + ':' + pad(d.getMinutes()); };
+const fdt = iso => new Date(iso).toLocaleDateString('es-BO') + ' ' + hm(iso);
+const ESTADOS = ['pendiente', 'confirmada', 'atendida', 'cancelada'];
+let me = null, tab = 'agenda', day = ymd(new Date()), pacs = [], selP = '', filtro = '';
+
+async function init() {
+  const { data } = await sb.auth.getSession();
+  if (!data.session) return loginView();
+  const { data: p, error } = await sb.from('profiles').select('*').eq('id', data.session.user.id).maybeSingle();
+  if (error || !p) { $('#app').innerHTML = '<div class="card login"><p>Tu usuario no tiene rol asignado. Pide al administrador que lo configure.</p><button onclick="salir()">Salir</button></div>'; return; }
+  me = p; await cargarPacs(); render();
+}
+function loginView() {
+  $('#app').innerHTML = `<div class="card login"><h1>Consultorio</h1><label>Correo</label><input id="em" type="email" autocomplete="username"><label>Contraseña</label><input id="pw" type="password" autocomplete="current-password"><p><button id="go">Ingresar</button></p><p class="mu" id="err"></p></div>`;
+  const go = async () => {
+    const { error } = await sb.auth.signInWithPassword({ email: $('#em').value.trim(), password: $('#pw').value });
+    if (error) $('#err').textContent = 'No se pudo ingresar: ' + error.message; else init();
+  };
+  $('#go').onclick = go; $('#pw').onkeydown = e => { if (e.key === 'Enter') go(); };
+}
+async function salir() { await sb.auth.signOut(); me = null; loginView(); }
+async function cargarPacs() {
+  const { data, error } = await sb.from('pacientes').select('*').order('nombre');
+  if (error) alert(error.message); pacs = data || [];
+}
+const isMed = () => me && me.rol === 'medico';
+function render() {
+  const tabs = [['agenda', 'Agenda'], ['pacientes', 'Pacientes']];
+  if (isMed()) tabs.push(['historial', 'Historiales']);
+  $('#app').innerHTML = `<div class="top"><h1>Consultorio</h1><span class="mu">${esc(me.nombre)} · ${esc(me.rol)} <button class="s" onclick="salir()">Salir</button></span></div>
+  <div class="tabs">${tabs.map(t => `<button class="${tab === t[0] ? 'on' : 's'}" data-tab="${t[0]}">${t[1]}</button>`).join('')}</div><div id="v"></div>`;
+  if (tab === 'agenda') agenda(); else if (tab === 'pacientes') pacientes(); else historial();
+}
+const opts = (sel) => pacs.map(p => `<option value="${p.id}" ${String(p.id) === String(sel) ? 'selected' : ''}>${esc(p.nombre)}${p.ci ? ' · ' + esc(p.ci) : ''}</option>`).join('');
+
+async function agenda() {
+  const a = new Date(day + 'T00:00:00'), b = new Date(a); b.setDate(b.getDate() + 1);
+  const { data, error } = await sb.from('citas').select('*, pacientes(nombre,telefono)').gte('inicio', a.toISOString()).lt('inicio', b.toISOString()).order('inicio');
+  if (error) return alert(error.message);
+  $('#v').innerHTML = `<div class="card"><label>Día</label><input type="date" id="dia" value="${day}"></div>
+  <div class="card">${(data || []).map(c => `<div class="r"><div class="${c.estado === 'cancelada' ? 'cancelada' : ''}"><b>${hm(c.inicio)}</b> (${c.duracion} min) · ${esc(c.pacientes?.nombre)}<br><span class="mu">${esc(c.motivo)} ${c.pacientes?.telefono ? '· Tel: ' + esc(c.pacientes.telefono) : ''}</span></div>
+  <select class="est" data-cita="${c.id}">${ESTADOS.map(e => `<option ${e === c.estado ? 'selected' : ''}>${e}</option>`).join('')}</select></div>`).join('') || '<p class="mu">Sin citas este día.</p>'}</div>
+  <div class="card"><b>Nueva cita</b><div class="grid"><div><label>Paciente</label><select id="cp"><option value="">— elegir —</option>${opts('')}</select></div>
+  <div><label>Fecha y hora</label><input type="datetime-local" id="ci" value="${day}T09:00"></div><div><label>Duración (min)</label><input type="number" id="cd" value="30" min="5"></div></div>
+  <label>Motivo</label><input id="cm"><p><button id="gc">Agendar</button></p></div>`;
+  $('#dia').onchange = e => { day = e.target.value; agenda(); };
+  $('#gc').onclick = async () => {
+    if (!$('#cp').value || !$('#ci').value) return alert('Elige paciente y fecha.');
+    const { error } = await sb.from('citas').insert({ paciente_id: +$('#cp').value, inicio: new Date($('#ci').value).toISOString(), duracion: +$('#cd').value || 30, motivo: $('#cm').value.trim() });
+    if (error) alert(error.message); else { day = $('#ci').value.slice(0, 10); agenda(); }
+  };
+}
+function pacientes() {
+  const lista = pacs.filter(p => (p.nombre + ' ' + (p.ci || '')).toLowerCase().includes(filtro.toLowerCase()));
+  $('#v').innerHTML = `<div class="card"><b>Nuevo paciente</b><div class="grid"><div><label>Nombre completo</label><input id="pn"></div><div><label>CI</label><input id="pc"></div>
+  <div><label>Teléfono</label><input id="pt" type="tel"></div><div><label>Fecha de nacimiento</label><input id="pf" type="date"></div></div><p><button id="gp">Guardar paciente</button></p></div>
+  <input id="bq" placeholder="Buscar por nombre o CI" value="${esc(filtro)}">
+  <div class="card">${lista.map(p => `<div class="r"><div><b>${esc(p.nombre)}</b><br><span class="mu">CI ${esc(p.ci)} · Tel ${esc(p.telefono)} ${p.fecha_nac ? '· Nac. ' + esc(p.fecha_nac) : ''}</span></div>${isMed() ? `<button class="s" data-hist="${p.id}">Historial</button>` : ''}</div>`).join('') || '<p class="mu">Sin resultados.</p>'}</div>`;
+  $('#bq').oninput = e => { filtro = e.target.value; const pos = e.target.selectionStart; pacientes(); const q = $('#bq'); q.focus(); q.setSelectionRange(pos, pos); };
+  $('#gp').onclick = async () => {
+    const n = $('#pn').value.trim(); if (!n) return alert('Escribe el nombre.');
+    const { error } = await sb.from('pacientes').insert({ nombre: n, ci: $('#pc').value.trim() || null, telefono: $('#pt').value.trim() || null, fecha_nac: $('#pf').value || null });
+    if (error) alert(error.message); else { await cargarPacs(); pacientes(); }
+  };
+}
+async function historial() {
+  let h = `<div class="card"><label>Paciente</label><select id="hp"><option value="">— elegir —</option>${opts(selP)}</select></div><div id="hv"></div>`;
+  $('#v').innerHTML = h; $('#hp').onchange = e => { selP = e.target.value; historial(); };
+  if (!selP) return;
+  const { data, error } = await sb.from('historiales').select('*').eq('paciente_id', selP).order('fecha', { ascending: false });
+  if (error) return alert(error.message);
+  $('#hv').innerHTML = `<div class="card"><b>Nueva consulta</b><label>Motivo</label><input id="hm"><label>Diagnóstico</label><textarea id="hd" rows="2"></textarea>
+  <label>Tratamiento</label><textarea id="ht" rows="2"></textarea><label>Notas</label><textarea id="hn" rows="3"></textarea><p><button id="gh">Guardar en historial</button></p></div>
+  ${(data || []).map(x => `<div class="card"><b>${fdt(x.fecha)}</b> · ${esc(x.motivo)}<p><span class="mu">Diagnóstico:</span> ${esc(x.diagnostico)}<br><span class="mu">Tratamiento:</span> ${esc(x.tratamiento)}<br><span class="mu">Notas:</span> ${esc(x.notas)}</p></div>`).join('') || '<p class="mu">Sin consultas registradas.</p>'}`;
+  $('#gh').onclick = async () => {
+    const { error } = await sb.from('historiales').insert({ paciente_id: +selP, motivo: $('#hm').value.trim(), diagnostico: $('#hd').value.trim(), tratamiento: $('#ht').value.trim(), notas: $('#hn').value.trim() });
+    if (error) alert(error.message); else historial();
+  };
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-tab]'); if (t) { tab = t.dataset.tab; render(); return; }
+  const h = e.target.closest('[data-hist]'); if (h) { selP = h.dataset.hist; tab = 'historial'; render(); }
+});
+document.addEventListener('change', async e => {
+  const id = e.target.dataset && e.target.dataset.cita; if (!id) return;
+  const { error } = await sb.from('citas').update({ estado: e.target.value }).eq('id', id);
+  if (error) alert(error.message); else agenda();
+});
+init();
+</script></body></html>
