@@ -7,83 +7,83 @@
 <style>
 :root{--ink:#12303a;--mu:#5d7279;--bg:#f3f7f7;--card:#fff;--bd:#dde8e8;--pri:#0e8a7d;--pri-d:#0a6b61;--wash:#e3f3f0;--rail:#0f2f38;
 --pen:#b7791f;--pen-b:#fdf3dc;--con:#2563a8;--con-b:#e2eefb;--ate:#1f8a5b;--ate-b:#e0f4ea;--can:#8a5a5a;--can-b:#f6e6e6;--r:14px}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
-button,input,select,textarea{font:inherit;color:inherit}
-:focus-visible{outline:3px solid #7cc9c0;outline-offset:2px}
+button,input,select,textarea{font:inherit;color:inherit}:focus-visible{outline:3px solid #7cc9c0;outline-offset:2px}
 .app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
 .rail{background:var(--rail);color:#d7e8e6;padding:22px 16px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:#fff;padding:0 6px 18px}
-.logo{width:38px;height:38px;border-radius:11px;background:var(--pri);display:grid;place-items:center;flex:none}
-.logo svg{width:22px;height:22px}
+.logo{width:38px;height:38px;border-radius:11px;background:var(--pri);display:grid;place-items:center;flex:none}.logo svg{width:22px;height:22px}
 .nav{display:flex;flex-direction:column;gap:4px}
 .nav button{display:flex;align-items:center;gap:12px;padding:11px 12px;border:0;border-radius:12px;background:none;color:#b9d2cf;cursor:pointer;text-align:left;font-weight:500}
-.nav button:hover{background:rgba(255,255,255,.07)}
-.nav button.on{background:var(--pri);color:#fff}
+.nav button:hover{background:rgba(255,255,255,.07)}.nav button.on{background:var(--pri);color:#fff}
 .who{margin-top:auto;padding:12px;border-radius:12px;background:rgba(255,255,255,.07);font-size:.9rem}
 .who b{display:block;color:#fff}.who span{color:#9fbdb9}
 .who button{margin-top:8px;border:0;background:none;color:#9fbdb9;cursor:pointer;display:flex;gap:8px;align-items:center;padding:0}
-main{padding:28px clamp(16px,4vw,44px) 40px;max-width:1040px;width:100%}
-.head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:20px}
-h1{font-size:clamp(1.5rem,3.4vw,2rem);line-height:1.15;margin:0;font-weight:700;letter-spacing:-.01em}
-.sub{color:var(--mu);margin:4px 0 0;text-transform:capitalize}
-.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:12px;padding:11px 18px;background:var(--pri);color:#fff;font-weight:600;cursor:pointer;min-height:44px}
-.btn:hover{background:var(--pri-d)}
-.btn.soft{background:var(--wash);color:var(--pri-d)}.btn.soft:hover{background:#d3ece8}
-.btn.sm{padding:7px 12px;min-height:36px;font-size:.9rem}
-.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
-.bar input[type=date]{width:auto}
+main{padding:28px clamp(14px,3.5vw,44px) 40px;max-width:1040px;width:100%;min-width:0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+h1{font-size:clamp(1.4rem,3.4vw,2rem);line-height:1.15;margin:0;font-weight:700}
+.sub{color:var(--mu);margin:4px 0 0}.sub::first-letter{text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:11px 18px;background:var(--pri);color:#fff;font-weight:600;cursor:pointer;min-height:44px}
+.btn:hover{background:var(--pri-d)}.btn.soft{background:var(--wash);color:var(--pri-d)}.btn.soft:hover{background:#d3ece8}
+.btn.red{background:#fbeaea;color:#a33a2a}.btn.sm{padding:7px 12px;min-height:38px;font-size:.9rem}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.bar input[type=date]{width:auto}.bar select{width:auto;max-width:100%}
 .ib{width:44px;height:44px;border-radius:12px;border:1px solid var(--bd);background:var(--card);display:grid;place-items:center;cursor:pointer}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
-.chip{padding:5px 12px;border-radius:99px;font-size:.88rem;font-weight:600}
-.pill{padding:3px 11px;border-radius:99px;font-size:.82rem;font-weight:600;display:inline-block}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px;align-items:center}
+.chip{padding:5px 12px;border-radius:99px;font-size:.88rem;font-weight:600;background:#e8efef}
+.live{margin-left:auto;font-size:.82rem;color:var(--mu)}.live i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#9aa;margin-right:6px}.live.on i{background:#2bb673}
 .pendiente{background:var(--pen-b);color:var(--pen)}.confirmada{background:var(--con-b);color:var(--con)}
 .atendida{background:var(--ate-b);color:var(--ate)}.cancelada{background:var(--can-b);color:var(--can)}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:16px}
 .cita{display:grid;grid-template-columns:84px 1fr auto;gap:14px;align-items:center;margin-bottom:10px;padding:14px 16px}
-.hora{text-align:center;border-right:2px solid var(--wash);padding-right:12px}
-.hora b{display:block;font-size:1.25rem}.hora span{font-size:.8rem;color:var(--mu)}
-.cita.x .nom{text-decoration:line-through;opacity:.55}
-.nom{font-weight:700}.mu{color:var(--mu);font-size:.92rem}
-select.est{border-radius:99px;border:0;padding:7px 12px;font-weight:600;font-size:.88rem;cursor:pointer;min-height:36px}
-input,select,textarea{width:100%;padding:11px 12px;border:1px solid #c9d9d9;border-radius:11px;background:#fff;min-height:44px}
-textarea{resize:vertical}
+.hora{text-align:center;border-right:2px solid var(--wash);padding-right:12px}.hora b{display:block;font-size:1.25rem}.hora span{font-size:.8rem;color:var(--mu)}
+.cita.x .nom{text-decoration:line-through;opacity:.55}.nom{font-weight:700}.mu{color:var(--mu);font-size:.92rem}
+.ac{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+select.est{border-radius:99px;border:0;padding:7px 12px;font-weight:600;font-size:.88rem;cursor:pointer;min-height:38px;width:auto}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #c9d9d9;border-radius:11px;background:#fff;min-height:44px}textarea{resize:vertical}
 label{display:block;font-size:.88rem;font-weight:600;margin:12px 0 5px;color:#35525a}
+label.ck{display:flex;gap:10px;align-items:center;font-weight:500}label.ck input{width:20px;min-height:0;height:20px}
 .vacio{text-align:center;padding:36px 16px;color:var(--mu)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
-.pac{display:flex;gap:12px;align-items:flex-start}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.pac{display:flex;gap:12px;align-items:flex-start}.pac>div:last-child{min-width:0}
 .av{width:46px;height:46px;border-radius:50%;background:var(--wash);color:var(--pri-d);display:grid;place-items:center;font-weight:700;flex:none}
-.pac .btn{margin-top:10px}
+.pac .ac{margin-top:10px}.tag{font-size:.8rem;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--wash);color:var(--pri-d)}
 .tl{border-left:3px solid var(--wash);margin-left:6px;padding-left:18px}
 .tl .card{margin-bottom:12px;position:relative}
 .tl .card::before{content:"";position:absolute;left:-26px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--pri);border:3px solid var(--bg)}
-.tl dl{margin:8px 0 0;display:grid;grid-template-columns:110px 1fr;gap:4px 10px}
-.tl dt{color:var(--mu);font-size:.9rem}.tl dd{margin:0;white-space:pre-wrap}
-dialog{border:0;border-radius:18px;padding:22px;width:min(520px,calc(100vw - 24px));max-height:90vh;color:var(--ink);box-shadow:0 20px 60px rgba(10,40,45,.3)}
-dialog::backdrop{background:rgba(10,35,40,.5)}
-dialog h2{margin:0 0 4px;font-size:1.3rem}
-.acts{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.tl dl{margin:8px 0 0;display:grid;grid-template-columns:110px 1fr;gap:4px 10px}.tl dt{color:var(--mu);font-size:.9rem}.tl dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.adj{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.adj a{display:flex;gap:6px;align-items:center;text-decoration:none;color:var(--pri-d);background:var(--wash);border-radius:10px;padding:6px 10px;font-size:.88rem;max-width:100%;overflow-wrap:anywhere}
+.adj img{width:92px;height:92px;object-fit:cover;border-radius:10px;display:block}
+.adj .it{position:relative}.adj .x{position:absolute;top:4px;right:4px;width:26px;height:26px;border:0;border-radius:50%;background:rgba(15,47,56,.8);color:#fff;cursor:pointer}
+dialog{border:0;border-radius:18px;padding:22px;width:min(540px,calc(100vw - 24px));max-height:92vh;color:var(--ink);box-shadow:0 20px 60px rgba(10,40,45,.3)}
+dialog::backdrop{background:rgba(10,35,40,.5)}dialog h2{margin:0 0 4px;font-size:1.3rem}
+.acts{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}.two{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.hint{font-size:.85rem;color:var(--mu);margin:6px 0 0}
 .login{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(160deg,#e3f3f0,#f3f7f7 60%)}
-.login .card{width:min(400px,100%);padding:30px 26px}
-.login .logo{margin-bottom:14px}.login h1{font-size:1.5rem}
+.login .card{width:min(400px,100%);padding:30px 26px}.login .logo{margin-bottom:14px}.login h1{font-size:1.5rem}
 .err{color:#a33a2a;min-height:1.4em;margin:10px 0 0;font-size:.92rem}
-@media (max-width:860px){
- .app{grid-template-columns:1fr}
- .rail{position:fixed;inset:auto 0 0 0;height:auto;flex-direction:row;padding:6px 8px calc(6px + env(safe-area-inset-bottom));z-index:20;box-shadow:0 -6px 24px rgba(10,40,45,.2)}
- .brand,.who{display:none}
- .nav{flex-direction:row;flex:1;gap:4px}.nav button{flex:1;flex-direction:column;gap:2px;font-size:.78rem;padding:7px 4px;justify-content:center;align-items:center}
- main{padding-bottom:100px}
- .mtop{display:flex!important}
- .cita{grid-template-columns:70px 1fr;}.cita .est{grid-column:1/-1}
- dialog{margin:auto 0 0;width:100%;max-width:100%;border-radius:20px 20px 0 0;padding-bottom:calc(22px + env(safe-area-inset-bottom))}
- .two{grid-template-columns:1fr}.tl dl{grid-template-columns:1fr}
-}
+#toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--rail);color:#fff;padding:10px 18px;border-radius:99px;font-size:.92rem;z-index:50;display:none}
 .mtop{display:none;align-items:center;gap:10px;margin:-8px 0 14px;color:var(--mu);font-size:.9rem;justify-content:space-between}
 .mtop button{border:0;background:var(--wash);color:var(--pri-d);border-radius:10px;padding:6px 12px;font-weight:600;cursor:pointer}
+@media (min-width:641px) and (max-width:1024px){
+ .app{grid-template-columns:78px 1fr}.rail{padding:18px 10px;align-items:center}
+ .brand{padding:0 0 14px}.brand span:last-child{display:none}
+ .nav button{flex-direction:column;gap:3px;font-size:.72rem;padding:10px 4px;width:58px;align-items:center;text-align:center}
+ .who{background:none;padding:0}.who b,.who span{display:none}.who button{font-size:0;margin:0}
+ main{padding-top:22px}}
+@media (max-width:640px){
+ .app{grid-template-columns:1fr}
+ .rail{position:fixed;inset:auto 0 0 0;height:auto;flex-direction:row;padding:6px 8px calc(6px + env(safe-area-inset-bottom));z-index:20;box-shadow:0 -6px 24px rgba(10,40,45,.2)}
+ .brand,.who{display:none}.nav{flex-direction:row;flex:1;gap:4px}
+ .nav button{flex:1;flex-direction:column;gap:2px;font-size:.74rem;padding:7px 2px;align-items:center;justify-content:center}
+ main{padding-bottom:104px}.mtop{display:flex}
+ .cita{grid-template-columns:68px 1fr}.cita .ac{grid-column:1/-1}.head .btn{width:100%}
+ dialog{margin:auto 0 0;width:100%;max-width:100%;border-radius:20px 20px 0 0;padding-bottom:calc(22px + env(safe-area-inset-bottom))}
+ .two{grid-template-columns:1fr}.tl dl{grid-template-columns:1fr}.acts .btn{flex:1}.bar select,.bar input[type=date]{flex:1}}
 @media (prefers-reduced-motion:no-preference){dialog[open]{animation:up .18s ease-out}@keyframes up{from{opacity:0;transform:translateY(14px)}}}
-</style></head><body><div id="app"></div><dialog id="dlg"></dialog>
+</style></head><body><div id="app"></div><dialog id="dlg"></dialog><div id="toast" role="status"></div>
+<input type="file" id="fadj" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.txt" hidden>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 // === CONFIGURACIÓN ===
@@ -93,7 +93,6 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 // =====================
 let sb = null, fallo = '';
 if (typeof supabase === 'undefined') fallo = 'No se pudo cargar la librería de Supabase. Revisa tu conexión a internet.';
-else if (SUPABASE_URL.startsWith('PEGAR') || SUPABASE_KEY.startsWith('PEGAR')) fallo = 'Falta configurar la URL y la clave de Supabase en index.html.';
 else { try { sb = supabase.createClient(new URL(SUPABASE_URL.trim()).origin, SUPABASE_KEY.trim()); } catch (e) { fallo = 'Configuración inválida: ' + e.message; } }
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -102,22 +101,29 @@ const ymd = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.get
 const hm = iso => { const d = new Date(iso); return pad(d.getHours()) + ':' + pad(d.getMinutes()); };
 const fdt = iso => new Date(iso).toLocaleDateString('es-BO', { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + hm(iso);
 const ESTADOS = ['pendiente', 'confirmada', 'atendida', 'cancelada'];
+const ROLES = { medico: 'Médico', secretaria: 'Secretaría', admin: 'Administrador' };
 const ic = {
   cal: '<path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>',
   users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
   file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h8"/>',
+  team: '<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
   out: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',
-  plus: '<path d="M12 5v14M5 12h14"/>', l: '<path d="M15 18l-6-6 6-6"/>', r: '<path d="M9 18l6-6-6-6"/>'
+  plus: '<path d="M12 5v14M5 12h14"/>', l: '<path d="M15 18l-6-6 6-6"/>', r: '<path d="M9 18l6-6-6-6"/>',
+  clip: '<path d="M21 11l-9 9a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8-8"/>'
 };
-const svg = n => `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[n]}</svg>`;
+const svg = (n, s = 20) => `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[n]}</svg>`;
 const LOGO = '<span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>';
-let me = null, tab = 'agenda', day = ymd(new Date()), pacs = [], selP = '', filtro = '';
+let me = null, tab = 'agenda', day = ymd(new Date()), pacs = [], staff = [], selP = '', filtro = '', fMed = '', canal = null, timer = null, adjTarget = null, citasDia = [], histDia = [], editId = null;
 const isMed = () => me && me.rol === 'medico';
+const isAdm = () => me && (me.admin || me.rol === 'admin');
+const isClin = () => isMed() || isAdm();
+const docs = () => staff.filter(s => s.rol === 'medico' && s.activo !== false);
 const ini = n => (n || '?').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
 const edad = f => { if (!f) return ''; const d = new Date(f), t = new Date(); let a = t.getFullYear() - d.getFullYear(); if (t < new Date(t.getFullYear(), d.getMonth(), d.getDate())) a--; return a + ' años'; };
 const saludo = () => { const h = new Date().getHours(); return h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches'; };
 const cerrar = () => $('#dlg').close();
 const abrir = h => { $('#dlg').innerHTML = h; $('#dlg').showModal(); };
+const toast = t => { const e = $('#toast'); e.textContent = t; e.style.display = 'block'; clearTimeout(e._t); e._t = setTimeout(() => e.style.display = 'none', 3500); };
 
 async function init() {
   if (fallo) { $('#app').innerHTML = `<div class="login"><div class="card">${LOGO}<h1>${esc(CENTRO)}</h1><p class="err">${esc(fallo)}</p></div></div>`; return; }
@@ -125,111 +131,224 @@ async function init() {
   if (!data.session) return loginView();
   const { data: p, error } = await sb.from('profiles').select('*').eq('id', data.session.user.id).maybeSingle();
   if (error || !p) { $('#app').innerHTML = `<div class="login"><div class="card">${LOGO}<h1>Sin rol asignado</h1><p class="mu">Tu usuario aún no tiene un rol. Pide al administrador que lo configure.</p><button class="btn soft" onclick="salir()">Salir</button></div></div>`; return; }
-  me = p; await cargarPacs(); render();
+  me = p; if (!isClin() && tab === 'historial') tab = 'agenda';
+  await Promise.all([cargarPacs(), cargarStaff()]); if (isMed()) fMed = me.id; render(); vivo();
 }
 function loginView() {
   $('#app').innerHTML = `<div class="login"><div class="card">${LOGO}<h1>${esc(CENTRO)}</h1><p class="mu" style="margin:4px 0 8px">Ingreso del personal</p>
   <label for="em">Correo</label><input id="em" type="email" autocomplete="username"><label for="pw">Contraseña</label><input id="pw" type="password" autocomplete="current-password">
-  <p class="err" id="err" role="alert"></p><button class="btn" id="go" style="width:100%;justify-content:center;margin-top:6px">Ingresar</button></div></div>`;
-  const go = async () => {
-    $('#err').textContent = '';
+  <p class="err" id="err" role="alert"></p><button class="btn" id="go" style="width:100%;margin-top:6px">Ingresar</button></div></div>`;
+  const go = async () => { $('#err').textContent = '';
     const { error } = await sb.auth.signInWithPassword({ email: $('#em').value.trim(), password: $('#pw').value });
-    if (error) $('#err').textContent = 'No se pudo ingresar: ' + error.message; else init();
-  };
+    if (error) $('#err').textContent = 'No se pudo ingresar: ' + error.message; else init(); };
   $('#go').onclick = go; $('#pw').onkeydown = e => { if (e.key === 'Enter') go(); };
 }
-async function salir() { await sb.auth.signOut(); me = null; loginView(); }
-async function cargarPacs() {
-  const { data, error } = await sb.from('pacientes').select('*').order('nombre');
-  if (error) alert(error.message); pacs = data || [];
+async function salir() { clearInterval(timer); if (canal) { sb.removeChannel(canal); canal = null; } await sb.auth.signOut(); me = null; loginView(); }
+async function cargarPacs() { const { data, error } = await sb.from('pacientes').select('*').order('nombre'); if (error) alert(error.message); pacs = data || []; }
+async function cargarStaff() { const { data } = await sb.from('profiles').select('*').order('nombre'); staff = data || []; }
+
+// --- Sincronización en vivo ---
+let deb = null;
+function sync() { clearTimeout(deb); deb = setTimeout(() => { if (me && tab === 'agenda' && !$('#dlg').open) agenda(); }, 250); }
+function vivo() {
+  if (canal) sb.removeChannel(canal);
+  canal = sb.channel('citas-vivo').on('postgres_changes', { event: '*', schema: 'public', table: 'citas' }, p => { if (p.eventType === 'INSERT') toast('Nueva cita agendada'); sync(); })
+    .subscribe(st => { const e = $('#live'); if (e) { e.classList.toggle('on', st === 'SUBSCRIBED'); e.lastChild.textContent = st === 'SUBSCRIBED' ? 'En vivo' : 'Actualizando cada 20 s'; } });
+  clearInterval(timer); timer = setInterval(sync, 20000);
 }
+document.addEventListener('visibilitychange', () => { if (!document.hidden && me) sync(); });
+
 function render() {
   const tabs = [['agenda', 'Agenda', 'cal'], ['pacientes', 'Pacientes', 'users']];
-  if (isMed()) tabs.push(['historial', 'Historiales', 'file']);
+  if (isClin()) tabs.push(['historial', 'Historiales', 'file']);
+  if (isAdm()) tabs.push(['personal', 'Personal', 'team']);
+  const rol = ROLES[me.rol] + (me.admin && me.rol !== 'admin' ? ' · Admin' : '');
   $('#app').innerHTML = `<div class="app"><aside class="rail"><div class="brand">${LOGO}<span>${esc(CENTRO)}</span></div>
   <nav class="nav">${tabs.map(t => `<button data-tab="${t[0]}" class="${tab === t[0] ? 'on' : ''}">${svg(t[2])}<span>${t[1]}</span></button>`).join('')}</nav>
-  <div class="who"><b>${esc(me.nombre)}</b><span>${isMed() ? 'Médico' : 'Secretaría'}</span><button onclick="salir()">${svg('out')} Cerrar sesión</button></div></aside>
-  <main><div class="mtop"><span>${esc(me.nombre)} · ${isMed() ? 'Médico' : 'Secretaría'}</span><button onclick="salir()">Salir</button></div><div id="v"></div></main></div>`;
-  if (tab === 'agenda') agenda(); else if (tab === 'pacientes') pacientes(); else historial();
+  <div class="who"><b>${esc(me.nombre)}</b><span>${rol}</span><button onclick="salir()" aria-label="Cerrar sesión">${svg('out')} Cerrar sesión</button></div></aside>
+  <main><div class="mtop"><span>${esc(me.nombre)} · ${rol}</span><button onclick="salir()">Salir</button></div><div id="v"></div></main></div>`;
+  ({ agenda, pacientes, historial, personal })[tab]();
 }
 const head = (t, s, btn) => `<div class="head"><div><h1>${t}</h1><p class="sub">${s}</p></div>${btn || ''}</div>`;
 const opts = sel => pacs.map(p => `<option value="${p.id}" ${String(p.id) === String(sel) ? 'selected' : ''}>${esc(p.nombre)}${p.ci ? ' · ' + esc(p.ci) : ''}</option>`).join('');
 
+// --- Agenda ---
 async function agenda() {
   const a = new Date(day + 'T00:00:00'), b = new Date(a); b.setDate(b.getDate() + 1);
-  const { data, error } = await sb.from('citas').select('*, pacientes(nombre,telefono)').gte('inicio', a.toISOString()).lt('inicio', b.toISOString()).order('inicio');
-  if (error) return alert(error.message);
-  const cs = data || [], n = e => cs.filter(c => c.estado === e).length;
+  let q = sb.from('citas').select('*, pacientes(nombre,telefono), medico:profiles(nombre)').gte('inicio', a.toISOString()).lt('inicio', b.toISOString()).order('inicio');
+  if (fMed) q = q.eq('medico_id', fMed);
+  const { data, error } = await q; if (error) return alert(error.message);
+  const cs = citasDia = data || [], n = e => cs.filter(c => c.estado === e).length;
   const fecha = a.toLocaleDateString('es-BO', { weekday: 'long', day: 'numeric', month: 'long' });
+  const dm = docs();
+  if (tab !== 'agenda') return;
   $('#v').innerHTML = head(day === ymd(new Date()) ? saludo() + ', ' + esc(me.nombre.replace(/^Dr\.?\s*/i, '')) : 'Agenda', fecha, `<button class="btn" data-act="nueva-cita">${svg('plus')} Nueva cita</button>`) +
-  `<div class="bar"><button class="ib" data-mov="-1" aria-label="Día anterior">${svg('l')}</button><input type="date" id="dia" value="${day}" aria-label="Elegir día"><button class="ib" data-mov="1" aria-label="Día siguiente">${svg('r')}</button><button class="btn soft sm" data-mov="0">Hoy</button></div>
-  <div class="chips"><span class="chip" style="background:#e8efef">${cs.length} citas</span>${ESTADOS.filter(e => n(e)).map(e => `<span class="chip ${e}">${n(e)} ${e}${n(e) > 1 && e !== 'cancelada' ? 's' : n(e) > 1 ? 's' : ''}</span>`).join('')}</div>` +
+  `<div class="bar"><button class="ib" data-mov="-1" aria-label="Día anterior">${svg('l')}</button><input type="date" id="dia" value="${day}" aria-label="Elegir día"><button class="ib" data-mov="1" aria-label="Día siguiente">${svg('r')}</button><button class="btn soft sm" data-mov="0">Hoy</button>
+  ${dm.length > 1 || fMed ? `<select id="fm" aria-label="Filtrar por médico"><option value="">Todos los médicos</option>${dm.map(d => `<option value="${d.id}" ${d.id === fMed ? 'selected' : ''}>${esc(d.nombre)}</option>`).join('')}</select>` : ''}</div>
+  <div class="chips"><span class="chip">${cs.length} citas</span>${ESTADOS.filter(e => n(e)).map(e => `<span class="chip ${e}">${n(e)} ${e}${n(e) > 1 ? 's' : ''}</span>`).join('')}<span class="live" id="live"><i></i><span>Conectando…</span></span></div>` +
   (cs.map(c => `<div class="card cita ${c.estado === 'cancelada' ? 'x' : ''}"><div class="hora"><b>${hm(c.inicio)}</b><span>${c.duracion} min</span></div>
-  <div><div class="nom">${esc(c.pacientes?.nombre)}</div><div class="mu">${esc(c.motivo) || 'Sin motivo indicado'}${c.pacientes?.telefono ? ' · Tel. ' + esc(c.pacientes.telefono) : ''}</div></div>
-  <select class="est ${c.estado}" data-cita="${c.id}" aria-label="Estado de la cita">${ESTADOS.map(e => `<option ${e === c.estado ? 'selected' : ''}>${e}</option>`).join('')}</select></div>`).join('') ||
+  <div><div class="nom">${esc(c.pacientes?.nombre)}</div><div class="mu">${esc(c.motivo) || 'Sin motivo indicado'}${c.pacientes?.telefono ? ' · Tel. ' + esc(c.pacientes.telefono) : ''}</div>${c.medico ? `<div class="mu">Con ${esc(c.medico.nombre)}</div>` : ''}</div>
+  <div class="ac"><select class="est ${c.estado}" data-cita="${c.id}" aria-label="Estado de la cita">${ESTADOS.map(e => `<option ${e === c.estado ? 'selected' : ''}>${e}</option>`).join('')}</select><button class="btn soft sm" data-act="edit-cita" data-id="${c.id}">Editar</button>${isAdm() ? `<button class="btn red sm" data-act="del-cita" data-id="${c.id}">Eliminar</button>` : ''}</div></div>`).join('') ||
   `<div class="card vacio">No hay citas este día.<br>Usa «Nueva cita» para agendar la primera.</div>`);
   $('#dia').onchange = e => { day = e.target.value || day; agenda(); };
+  if ($('#fm')) $('#fm').onchange = e => { fMed = e.target.value; agenda(); };
+  const l = $('#live'); if (l && canal && canal.state === 'joined') { l.classList.add('on'); l.lastChild.textContent = 'En vivo'; }
 }
-function nuevaCita() {
-  abrir(`<h2>Nueva cita</h2><label for="cp">Paciente</label><select id="cp"><option value="">Elegir paciente…</option>${opts('')}</select>
-  <div class="two"><div><label for="ci">Fecha y hora</label><input type="datetime-local" id="ci" value="${day}T09:00"></div><div><label for="cd">Duración (min)</label><input type="number" id="cd" value="30" min="5"></div></div>
-  <label for="cm">Motivo de la consulta</label><input id="cm"><p class="err" id="ce" role="alert"></p>
-  <div class="acts"><button class="btn soft" onclick="cerrar()">Cancelar</button><button class="btn" id="gc">Agendar cita</button></div>`);
+async function ocupados(ini, dur, excl) {
+  const a = new Date(ini), b = new Date(a.getTime() + dur * 60000), d0 = new Date(a); d0.setHours(0, 0, 0, 0); const d1 = new Date(d0); d1.setDate(d1.getDate() + 1);
+  const { data } = await sb.from('citas').select('id,medico_id,inicio,duracion').gte('inicio', d0.toISOString()).lt('inicio', d1.toISOString()).neq('estado', 'cancelada');
+  const s = new Set(); (data || []).forEach(c => { const s0 = new Date(c.inicio), e0 = new Date(s0.getTime() + c.duracion * 60000); if (c.id !== excl && c.medico_id && s0 < b && a < e0) s.add(c.medico_id); }); return s;
+}
+async function refMed() {
+  const v = $('#ci').value; if (!v || !$('#cmed')) return;
+  const bz = await ocupados(v, +$('#cd').value || 30, editId), sel = $('#cmed'), prev = sel.value, dm = docs();
+  sel.innerHTML = `<option value="">Cualquier médico libre</option>` + dm.map(d => `<option value="${d.id}" ${bz.has(d.id) ? 'disabled' : ''}>${esc(d.nombre)}${d.especialidad ? ' (' + esc(d.especialidad) + ')' : ''} — ${bz.has(d.id) ? 'ocupado' : 'libre'}</option>`).join('');
+  if (prev && !bz.has(prev)) sel.value = prev;
+  const libres = dm.filter(d => !bz.has(d.id)).length; $('#chint').textContent = dm.length ? `${libres} de ${dm.length} médicos libres en ese horario.` : 'Aún no hay médicos registrados.';
+}
+function nuevaCita(id) {
+  const c = id ? citasDia.find(x => String(x.id) === String(id)) : null; editId = c ? c.id : null;
+  const li = c ? ymd(new Date(c.inicio)) + 'T' + hm(c.inicio) : day + 'T09:00';
+  abrir(`<h2>${c ? 'Editar cita' : 'Nueva cita'}</h2><label for="cp">Paciente</label><select id="cp"><option value="">Elegir paciente…</option>${opts(c ? c.paciente_id : '')}</select>
+  <div class="two"><div><label for="ci">Fecha y hora</label><input type="datetime-local" id="ci" value="${li}"></div><div><label for="cd">Duración (min)</label><input type="number" id="cd" value="${c ? c.duracion : 30}" min="5"></div></div>
+  <label for="cmed">Médico</label><select id="cmed"></select><p class="hint" id="chint"></p>
+  <label for="cm">Motivo de la consulta</label><input id="cm" value="${esc(c?.motivo)}">
+  ${c ? `<label for="cst">Estado</label><select id="cst">${ESTADOS.map(e => `<option ${e === c.estado ? 'selected' : ''}>${e}</option>`).join('')}</select>` : ''}<p class="err" id="ce" role="alert"></p>
+  <div class="acts"><button class="btn soft" onclick="cerrar()">Cancelar</button><button class="btn" id="gc">${c ? 'Guardar cambios' : 'Agendar cita'}</button></div>`);
+  $('#ci').onchange = $('#cd').onchange = refMed; refMed().then(() => { if (c && c.medico_id && $('#cmed')) $('#cmed').value = c.medico_id; });
   $('#gc').onclick = async () => {
     if (!$('#cp').value || !$('#ci').value) { $('#ce').textContent = 'Elige un paciente y una fecha.'; return; }
-    const { error } = await sb.from('citas').insert({ paciente_id: +$('#cp').value, inicio: new Date($('#ci').value).toISOString(), duracion: +$('#cd').value || 30, motivo: $('#cm').value.trim() });
-    if (error) $('#ce').textContent = error.message; else { day = $('#ci').value.slice(0, 10); cerrar(); agenda(); }
+    const bz = await ocupados($('#ci').value, +$('#cd').value || 30, editId), dm = docs(); let mid = $('#cmed').value;
+    if (mid && bz.has(mid)) { $('#ce').textContent = 'Ese médico ya tiene una cita en ese horario.'; return; }
+    if (!mid && dm.length) { const l = dm.find(d => !bz.has(d.id)); if (!l) { $('#ce').textContent = 'No hay médicos libres en ese horario. Prueba otra hora.'; return; } mid = l.id; }
+    const row = { paciente_id: +$('#cp').value, inicio: new Date($('#ci').value).toISOString(), duracion: +$('#cd').value || 30, motivo: $('#cm').value.trim(), medico_id: mid || null };
+    if (c) row.estado = $('#cst').value;
+    const { error } = c ? await sb.from('citas').update(row).eq('id', c.id) : await sb.from('citas').insert(row);
+    if (error) $('#ce').textContent = error.message; else { day = $('#ci').value.slice(0, 10); cerrar(); toast(c ? 'Cita actualizada' : 'Cita agendada'); agenda(); }
   };
 }
+// --- Pacientes ---
 function listaPacs() {
   const l = pacs.filter(p => (p.nombre + ' ' + (p.ci || '')).toLowerCase().includes(filtro.toLowerCase()));
   $('#lista').innerHTML = l.map(p => `<div class="card pac"><div class="av">${esc(ini(p.nombre))}</div><div><div class="nom">${esc(p.nombre)}</div>
   <div class="mu">${p.ci ? 'CI ' + esc(p.ci) : 'Sin CI'}${p.fecha_nac ? ' · ' + edad(p.fecha_nac) : ''}</div><div class="mu">${p.telefono ? 'Tel. ' + esc(p.telefono) : 'Sin teléfono'}</div>
-  ${isMed() ? `<button class="btn soft sm" data-hist="${p.id}">Ver historial</button>` : ''}</div></div>`).join('') || '<div class="card vacio" style="grid-column:1/-1">No hay pacientes que coincidan.</div>';
+  <div class="ac">${isClin() ? `<button class="btn soft sm" data-hist="${p.id}">Historial</button>` : ''}<button class="btn soft sm" data-act="edit-pac" data-id="${p.id}">Editar</button>${isAdm() || isMed() ? `<button class="btn red sm" data-act="del-pac" data-id="${p.id}">Eliminar</button>` : ''}</div></div></div>`).join('') || '<div class="card vacio" style="grid-column:1/-1">No hay pacientes que coincidan.</div>';
 }
 function pacientes() {
   $('#v').innerHTML = head('Pacientes', pacs.length + ' registrados', `<button class="btn" data-act="nuevo-pac">${svg('plus')} Nuevo paciente</button>`) +
   `<div class="bar"><input id="bq" type="search" placeholder="Buscar por nombre o CI" value="${esc(filtro)}" aria-label="Buscar paciente" style="max-width:420px"></div><div class="grid" id="lista"></div>`;
   listaPacs(); $('#bq').oninput = e => { filtro = e.target.value; listaPacs(); };
 }
-function nuevoPac() {
-  abrir(`<h2>Nuevo paciente</h2><label for="pn">Nombre completo</label><input id="pn" autocomplete="off">
-  <div class="two"><div><label for="pc">CI</label><input id="pc"></div><div><label for="pf">Fecha de nacimiento</label><input id="pf" type="date"></div></div>
-  <label for="pt">Teléfono</label><input id="pt" type="tel"><p class="err" id="pe" role="alert"></p>
+function nuevoPac(id) {
+  const p = pacs.find(x => String(x.id) === String(id)) || {};
+  abrir(`<h2>${p.id ? 'Editar paciente' : 'Nuevo paciente'}</h2><label for="pn">Nombre completo</label><input id="pn" autocomplete="off" value="${esc(p.nombre)}">
+  <div class="two"><div><label for="pc">CI</label><input id="pc" value="${esc(p.ci)}"></div><div><label for="pf">Fecha de nacimiento</label><input id="pf" type="date" value="${esc(p.fecha_nac)}"></div></div>
+  <label for="pt">Teléfono</label><input id="pt" type="tel" value="${esc(p.telefono)}"><p class="err" id="pe" role="alert"></p>
   <div class="acts"><button class="btn soft" onclick="cerrar()">Cancelar</button><button class="btn" id="gp">Guardar paciente</button></div>`);
   $('#gp').onclick = async () => {
     const n = $('#pn').value.trim(); if (!n) { $('#pe').textContent = 'Escribe el nombre del paciente.'; return; }
-    const { error } = await sb.from('pacientes').insert({ nombre: n, ci: $('#pc').value.trim() || null, telefono: $('#pt').value.trim() || null, fecha_nac: $('#pf').value || null });
+    const row = { nombre: n, ci: $('#pc').value.trim() || null, telefono: $('#pt').value.trim() || null, fecha_nac: $('#pf').value || null };
+    const { error } = p.id ? await sb.from('pacientes').update(row).eq('id', p.id) : await sb.from('pacientes').insert(row);
     if (error) $('#pe').textContent = error.message; else { cerrar(); await cargarPacs(); pacientes(); }
   };
 }
+async function borrar(tabla, id, msg, despues) {
+  if (!confirm(msg)) return; const { error } = await sb.from(tabla).delete().eq('id', id);
+  if (error) alert(error.message); else despues();
+}
+// --- Historiales y adjuntos ---
+const limpio = n => n.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w.\-]+/g, '_');
+async function subir(files, pacId, histId) {
+  let ok = 0;
+  for (const f of files) {
+    if (f.size > 10485760) { alert(f.name + ' supera 10 MB y no se subió.'); continue; }
+    const ruta = `${pacId}/${crypto.randomUUID()}-${limpio(f.name)}`;
+    const up = await sb.storage.from('adjuntos').upload(ruta, f, { contentType: f.type || undefined });
+    if (up.error) { alert('No se pudo subir ' + f.name + ': ' + up.error.message); continue; }
+    const { error } = await sb.from('adjuntos').insert({ paciente_id: pacId, historial_id: histId, ruta, nombre: f.name, tipo: f.type, tamano: f.size });
+    if (error) alert(error.message); else ok++;
+  }
+  return ok;
+}
 async function historial() {
   const p = pacs.find(x => String(x.id) === String(selP));
-  $('#v').innerHTML = head('Historiales clínicos', 'Solo visibles para el médico', p ? `<button class="btn" data-act="nueva-consulta">${svg('plus')} Nueva consulta</button>` : '') +
+  $('#v').innerHTML = head('Historiales clínicos', 'Visibles solo para médicos y administración', p ? `<button class="btn" data-act="nueva-consulta">${svg('plus')} Nueva consulta</button>` : '') +
   `<div class="card" style="margin-bottom:16px"><label for="hp" style="margin-top:0">Paciente</label><select id="hp"><option value="">Elegir paciente…</option>${opts(selP)}</select></div><div id="hv"></div>`;
   $('#hp').onchange = e => { selP = e.target.value; historial(); };
   if (!p) { $('#hv').innerHTML = '<div class="card vacio">Elige un paciente para ver su historial.</div>'; return; }
-  const { data, error } = await sb.from('historiales').select('*').eq('paciente_id', selP).order('fecha', { ascending: false });
-  if (error) return alert(error.message);
+  const [h, a] = await Promise.all([sb.from('historiales').select('*').eq('paciente_id', selP).order('fecha', { ascending: false }), sb.from('adjuntos').select('*').eq('paciente_id', selP).order('creado')]);
+  if (h.error) return alert(h.error.message); histDia = h.data || [];
+  const adj = a.data || [], urls = {};
+  if (adj.length) { const r = await sb.storage.from('adjuntos').createSignedUrls(adj.map(x => x.ruta), 3600); (r.data || []).forEach(u => { if (u.signedUrl) urls[u.path] = u.signedUrl; }); }
+  const adjHtml = hid => adj.filter(x => x.historial_id === hid).map(x => {
+    const u = urls[x.ruta]; if (!u) return '';
+    return (x.tipo || '').startsWith('image/') ? `<div class="it"><a href="${esc(u)}" target="_blank" rel="noopener"><img src="${esc(u)}" alt="${esc(x.nombre)}" loading="lazy"></a><button class="x" data-act="del-adj" data-id="${x.id}" aria-label="Quitar adjunto">×</button></div>`
+      : `<div class="it"><a href="${esc(u)}" target="_blank" rel="noopener" style="padding-right:36px">${svg('clip', 16)} ${esc(x.nombre)}</a><button class="x" data-act="del-adj" data-id="${x.id}" aria-label="Quitar adjunto" style="top:50%;transform:translateY(-50%)">×</button></div>`; }).join('');
   const fila = (k, v) => v ? `<dt>${k}</dt><dd>${esc(v)}</dd>` : '';
-  $('#hv').innerHTML = `<div class="tl">${(data || []).map(x => `<div class="card"><b>${fdt(x.fecha)}</b><div class="mu">${esc(x.motivo) || 'Sin motivo indicado'}</div>
-  <dl>${fila('Diagnóstico', x.diagnostico)}${fila('Tratamiento', x.tratamiento)}${fila('Notas', x.notas)}</dl></div>`).join('') || '<div class="card vacio">Aún no hay consultas registradas para ' + esc(p.nombre) + '.</div>'}</div>`;
+  $('#hv').innerHTML = `<div class="tl">${(h.data || []).map(x => `<div class="card"><b>${fdt(x.fecha)}</b><div class="mu">${esc(x.motivo) || 'Sin motivo indicado'}</div>
+  <dl>${fila('Diagnóstico', x.diagnostico)}${fila('Tratamiento', x.tratamiento)}${fila('Notas', x.notas)}</dl><div class="adj">${adjHtml(x.id)}</div>
+  <div class="ac" style="margin-top:12px"><button class="btn soft sm" data-act="adjuntar" data-id="${x.id}">${svg('clip', 16)} Adjuntar archivo</button><button class="btn soft sm" data-act="edit-hist" data-id="${x.id}">Editar</button>${isAdm() ? `<button class="btn red sm" data-act="del-hist" data-id="${x.id}">Eliminar</button>` : ''}</div></div>`).join('') || '<div class="card vacio">Aún no hay consultas registradas para ' + esc(p.nombre) + '.</div>'}</div>`;
 }
-function nuevaConsulta() {
-  abrir(`<h2>Nueva consulta</h2><label for="hm">Motivo</label><input id="hm"><label for="hd">Diagnóstico</label><textarea id="hd" rows="2"></textarea>
-  <label for="ht">Tratamiento</label><textarea id="ht" rows="2"></textarea><label for="hn">Notas</label><textarea id="hn" rows="3"></textarea><p class="err" id="he" role="alert"></p>
-  <div class="acts"><button class="btn soft" onclick="cerrar()">Cancelar</button><button class="btn" id="gh">Guardar en historial</button></div>`);
+function nuevaConsulta(id) {
+  const x = id ? histDia.find(r => String(r.id) === String(id)) : null;
+  abrir(`<h2>${x ? 'Editar consulta' : 'Nueva consulta'}</h2><label for="hm">Motivo</label><input id="hm" value="${esc(x?.motivo)}"><label for="hd">Diagnóstico</label><textarea id="hd" rows="2">${esc(x?.diagnostico)}</textarea>
+  <label for="ht">Tratamiento</label><textarea id="ht" rows="2">${esc(x?.tratamiento)}</textarea><label for="hn">Notas</label><textarea id="hn" rows="3">${esc(x?.notas)}</textarea>
+  <label for="hf">${x ? 'Añadir fotos o archivos' : 'Fotos o archivos'} (máx. 10 MB c/u)</label><input id="hf" type="file" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.txt"><p class="err" id="he" role="alert"></p>
+  <div class="acts"><button class="btn soft" onclick="cerrar()">Cancelar</button><button class="btn" id="gh">${x ? 'Guardar cambios' : 'Guardar en historial'}</button></div>`);
   $('#gh').onclick = async () => {
-    const { error } = await sb.from('historiales').insert({ paciente_id: +selP, motivo: $('#hm').value.trim(), diagnostico: $('#hd').value.trim(), tratamiento: $('#ht').value.trim(), notas: $('#hn').value.trim() });
-    if (error) $('#he').textContent = error.message; else { cerrar(); historial(); }
+    $('#gh').disabled = true; $('#he').textContent = '';
+    const row = { motivo: $('#hm').value.trim(), diagnostico: $('#hd').value.trim(), tratamiento: $('#ht').value.trim(), notas: $('#hn').value.trim() };
+    const r = x ? await sb.from('historiales').update(row).eq('id', x.id).select('id').single() : await sb.from('historiales').insert({ paciente_id: +selP, ...row }).select('id').single();
+    if (r.error) { $('#he').textContent = r.error.message; $('#gh').disabled = false; return; }
+    const fs = [...$('#hf').files]; if (fs.length) { $('#gh').textContent = 'Subiendo archivos…'; await subir(fs, +selP, r.data.id); }
+    cerrar(); toast('Consulta guardada'); historial();
   };
 }
+$('#fadj').onchange = async e => {
+  const fs = [...e.target.files]; e.target.value = ''; if (!fs.length || !adjTarget) return;
+  toast('Subiendo…'); const n = await subir(fs, +selP, +adjTarget); if (n) toast(n + ' archivo(s) adjuntado(s)'); historial();
+};
+// --- Personal (administrador) ---
+async function personal() {
+  const r = await sb.rpc('usuarios_sin_perfil'), sin = r.data || [];
+  $('#v').innerHTML = head('Personal', 'Médicos, secretaría y administradores', '') +
+  (sin.length ? `<h2 style="font-size:1.05rem">Cuentas sin rol (${sin.length})</h2><div class="grid">${sin.map(u => `<div class="card"><div class="nom" style="overflow-wrap:anywhere">${esc(u.email)}</div><div class="ac" style="margin-top:10px"><button class="btn sm" data-act="asignar" data-id="${u.id}" data-email="${esc(u.email)}">Asignar rol</button></div></div>`).join('')}</div>` : '') +
+  `<h2 style="font-size:1.05rem;margin-top:22px">Equipo (${staff.length})</h2><div class="grid">${staff.map(s => `<div class="card pac"><div class="av">${esc(ini(s.nombre))}</div><div><div class="nom">${esc(s.nombre)}</div>
+  <div class="ac" style="margin-top:4px"><span class="tag">${ROLES[s.rol]}</span>${s.admin && s.rol !== 'admin' ? '<span class="tag">Admin</span>' : ''}${s.activo === false ? '<span class="chip cancelada">Inactivo</span>' : ''}</div>
+  <div class="mu">${esc(s.especialidad)}</div><div class="ac"><button class="btn soft sm" data-act="edit-pers" data-id="${s.id}">Editar</button>${s.id !== me.id ? `<button class="btn red sm" data-act="del-pers" data-id="${s.id}">Quitar</button>` : ''}</div></div></div>`).join('')}</div>
+  <p class="hint" style="margin-top:18px">Para sumar a una persona nueva: crea su cuenta en Supabase (Authentication → Users → Add user) y luego asígnale aquí su rol. «Quitar» elimina su rol y le impide usar el sistema; su cuenta de acceso se borra desde Supabase.</p>`;
+}
+function formPers(p, email) {
+  const nuevo = !p.rol;
+  abrir(`<h2>${nuevo ? 'Asignar rol' : 'Editar persona'}</h2>${email ? `<p class="mu">${esc(email)}</p>` : ''}<label for="sn">Nombre (como se mostrará)</label><input id="sn" value="${esc(p.nombre)}" placeholder="Dr. Nombre Apellido">
+  <div class="two"><div><label for="sr">Rol</label><select id="sr">${Object.entries(ROLES).map(([k, v]) => `<option value="${k}" ${p.rol === k ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
+  <div><label for="se">Especialidad</label><input id="se" value="${esc(p.especialidad)}" placeholder="Pediatría, etc."></div></div>
+  <label class="ck"><input type="checkbox" id="sa" ${p.admin ? 'checked' : ''} ${p.id === me.id ? 'disabled' : ''}> También es administrador del sistema</label>
+  <label class="ck"><input type="checkbox" id="sv" ${p.activo === false ? '' : 'checked'}> Activo (aparece al agendar citas)</label><p class="err" id="sx" role="alert"></p>
+  <div class="acts"><button class="btn soft" onclick="cerrar()">Cancelar</button><button class="btn" id="gs">Guardar</button></div>`);
+  $('#gs').onclick = async () => {
+    const nombre = $('#sn').value.trim(); if (!nombre) { $('#sx').textContent = 'Escribe el nombre.'; return; }
+    const row = { nombre, rol: $('#sr').value, especialidad: $('#se').value.trim() || null, admin: $('#sa').checked, activo: $('#sv').checked };
+    const { error } = nuevo ? await sb.from('profiles').insert({ id: p.id, ...row }) : await sb.from('profiles').update(row).eq('id', p.id);
+    if (error) $('#sx').textContent = error.message; else { cerrar(); await cargarStaff(); if (p.id === me.id) me = { ...me, ...row }; personal(); }
+  };
+}
+const acciones = {
+  'nueva-cita': nuevaCita, 'nuevo-pac': () => nuevoPac(), 'nueva-consulta': nuevaConsulta,
+  'edit-pac': id => nuevoPac(id), 'edit-cita': id => nuevaCita(id), 'edit-hist': id => nuevaConsulta(id),
+  'del-hist': async id => { if (!confirm('¿Eliminar esta consulta y sus archivos adjuntos?')) return; const { data } = await sb.from('adjuntos').select('ruta').eq('historial_id', id); if (data && data.length) await sb.storage.from('adjuntos').remove(data.map(a => a.ruta)); const { error } = await sb.from('historiales').delete().eq('id', id); if (error) alert(error.message); else historial(); },
+  'del-pac': id => borrar('pacientes', id, '¿Eliminar este paciente con sus citas, historial y adjuntos? No se puede deshacer.', async () => { await cargarPacs(); pacientes(); }),
+  'del-cita': id => borrar('citas', id, '¿Eliminar esta cita?', agenda),
+  'adjuntar': id => { adjTarget = id; $('#fadj').click(); },
+  'del-adj': async id => { if (!confirm('¿Quitar este archivo?')) return; const { data } = await sb.from('adjuntos').select('ruta').eq('id', id).single(); if (data) await sb.storage.from('adjuntos').remove([data.ruta]); await sb.from('adjuntos').delete().eq('id', id); historial(); },
+  'asignar': (id, a) => formPers({ id }, a.dataset.email), 'edit-pers': id => formPers(staff.find(s => s.id === id)),
+  'del-pers': id => borrar('profiles', id, '¿Quitar el rol a esta persona? Ya no podrá usar el sistema.', async () => { await cargarStaff(); personal(); })
+};
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-tab]'); if (t) { tab = t.dataset.tab; render(); return; }
   const h = e.target.closest('[data-hist]'); if (h) { selP = h.dataset.hist; tab = 'historial'; render(); return; }
   const m = e.target.closest('[data-mov]'); if (m) { const v = +m.dataset.mov, d = new Date(day + 'T00:00:00'); if (v) d.setDate(d.getDate() + v); else d.setTime(Date.now()); day = ymd(d); agenda(); return; }
-  const a = e.target.closest('[data-act]'); if (!a) return;
-  ({ 'nueva-cita': nuevaCita, 'nuevo-pac': nuevoPac, 'nueva-consulta': nuevaConsulta })[a.dataset.act]();
+  const a = e.target.closest('[data-act]'); if (a) acciones[a.dataset.act](a.dataset.id, a);
 });
 document.addEventListener('change', async e => {
   const id = e.target.dataset && e.target.dataset.cita; if (!id) return;
