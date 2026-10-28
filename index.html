@@ -25,10 +25,13 @@ button.s{background:var(--ac2);color:var(--ac)}button.on{background:var(--ac);co
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 // === CONFIGURACIÓN: pega aquí los datos de tu proyecto Supabase ===
-const SUPABASE_URL = 'PEGAR_URL_AQUI';
-const SUPABASE_KEY = 'PEGAR_ANON_KEY_AQUI';
+const SUPABASE_URL = 'sb_publishable_1pokBuR4vkS9xtuBKtX2vQ_Ilba1qvp';
+const SUPABASE_KEY = 'sb_secret_5KOekEcyDMgDnNnWkH0ZPg_4Ny--TQN';
 // ==================================================================
-const sb = supabase.createClient(sb_publishable_1pokBuR4vkS9xtuBKtX2vQ_Ilba1qvp, sb_secret_qNJ89mMOuM-JpEGAEb8HDQ_mLDhzT3-);
+let sb = null, fallo = '';
+if (typeof supabase === 'undefined') fallo = 'No se pudo cargar la librería de Supabase. Revisa tu conexión a internet.';
+else if (SUPABASE_URL.startsWith('PEGAR') || SUPABASE_KEY.startsWith('PEGAR')) fallo = 'Falta configurar: abre index.html y reemplaza PEGAR_URL_AQUI y PEGAR_ANON_KEY_AQUI por los datos de tu proyecto Supabase (paso 3 del README).';
+else { try { sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch (e) { fallo = 'Configuración inválida: ' + e.message; } }
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pad = n => String(n).padStart(2, '0');
@@ -39,6 +42,7 @@ const ESTADOS = ['pendiente', 'confirmada', 'atendida', 'cancelada'];
 let me = null, tab = 'agenda', day = ymd(new Date()), pacs = [], selP = '', filtro = '';
 
 async function init() {
+  if (fallo) { $('#app').innerHTML = '<div class="card login"><h1>Consultorio</h1><p>' + esc(fallo) + '</p></div>'; return; }
   const { data } = await sb.auth.getSession();
   if (!data.session) return loginView();
   const { data: p, error } = await sb.from('profiles').select('*').eq('id', data.session.user.id).maybeSingle();
